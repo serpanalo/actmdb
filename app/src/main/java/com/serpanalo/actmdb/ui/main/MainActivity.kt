@@ -1,7 +1,8 @@
-package com.serpanalo.actmdb
+package com.serpanalo.actmdb.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.serpanalo.actmdb.R
 
 class MainActivity : AppCompatActivity() {
 
