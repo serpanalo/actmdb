@@ -40,7 +40,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":data")
     implementation project(":domain")
-    implementation project(":usecases")
+    implementation project(":usecase")
 
     //Ui
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
