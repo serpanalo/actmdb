@@ -2,7 +2,6 @@ package com.serpanalo.actmdb.data.server
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.serpanalo.actmdb.data.database.Movie
 import kotlinx.android.parcel.Parcelize
 
 data class TheMovieDbResult(

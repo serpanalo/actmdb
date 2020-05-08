@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -23,6 +24,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
 }
 
 ext {
@@ -33,7 +42,10 @@ ext {
     appCompatVersion = "1.1.0"
     retrofitVersion ="2.7.2"
     interceptorVersion = "4.3.1"
-
+    glideVersion = "4.11.0"
+    dexterVersion = "6.0.2"
+    playServicesLocationVersion = "17.0.0"
+    koinVersion = "2.1.5"
 }
 
 dependencies {
@@ -55,12 +67,27 @@ dependencies {
 
     //Database
     implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //Image
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     //Http
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptorVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //Permission
+    implementation "com.karumi:dexter:$dexterVersion"
+
+    //PlayServices
+    implementation "com.google.android.gms:play-services-location:$playServicesLocationVersion"
+
+    // Koin for Kotlin
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
     //Test
     testImplementation 'junit:junit:4.12'
