@@ -7,7 +7,7 @@ import com.serpanalo.domain.Movie
 import com.serpanalo.usecase.GetPopularMovies
 import kotlinx.coroutines.launch
 
-class MainViewModel (private val getPopularMovies: GetPopularMovies) : ScopedViewModel() {
+class HomeViewModel (private val getPopularMovies: GetPopularMovies) : ScopedViewModel() {
 
     private val _model = MutableLiveData<UiModel>()
 

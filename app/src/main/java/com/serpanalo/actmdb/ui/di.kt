@@ -9,8 +9,8 @@ import com.serpanalo.actmdb.data.database.RoomDataSource
 import com.serpanalo.actmdb.data.server.TheMovieDbDataSource
 import com.serpanalo.actmdb.ui.detail.DetailActivity
 import com.serpanalo.actmdb.ui.detail.DetailViewModel
-import com.serpanalo.actmdb.ui.main.MainActivity
-import com.serpanalo.actmdb.ui.main.MainViewModel
+import com.serpanalo.actmdb.ui.main.HomeFragment
+import com.serpanalo.actmdb.ui.main.HomeViewModel
 import com.serpanalo.data.repository.MovieRepository
 import com.serpanalo.data.repository.PermissionChecker
 import com.serpanalo.data.repository.RegionRepository
@@ -55,8 +55,8 @@ private val dataModule = module {
 
 
 private val scopesModule = module {
-    scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get()) }
+    scope(named<HomeFragment>()) {
+        viewModel { HomeViewModel(get()) }
         scoped { GetPopularMovies(get()) }
     }
 

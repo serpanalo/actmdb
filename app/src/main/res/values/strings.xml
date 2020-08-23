@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AC</string>
+
+    <!-- Menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_favs">Favs</string>
+    <string name="menu_about">About</string>
+
+
 </resources>
