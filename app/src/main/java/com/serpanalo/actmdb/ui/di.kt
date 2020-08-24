@@ -9,8 +9,10 @@ import com.serpanalo.actmdb.data.database.RoomDataSource
 import com.serpanalo.actmdb.data.server.TheMovieDbDataSource
 import com.serpanalo.actmdb.ui.detail.DetailActivity
 import com.serpanalo.actmdb.ui.detail.DetailViewModel
-import com.serpanalo.actmdb.ui.main.MainActivity
-import com.serpanalo.actmdb.ui.main.MainViewModel
+import com.serpanalo.actmdb.ui.favs.FavoritesFragment
+import com.serpanalo.actmdb.ui.favs.FavoritesViewModel
+import com.serpanalo.actmdb.ui.main.HomeFragment
+import com.serpanalo.actmdb.ui.main.HomeViewModel
 import com.serpanalo.data.repository.MovieRepository
 import com.serpanalo.data.repository.PermissionChecker
 import com.serpanalo.data.repository.RegionRepository
@@ -18,6 +20,7 @@ import com.serpanalo.data.sources.LocalDataSource
 import com.serpanalo.data.sources.LocationDataSource
 import com.serpanalo.data.sources.ServerDataSource
 import com.serpanalo.usecase.FindMovieById
+import com.serpanalo.usecase.GetFavoritesMovies
 import com.serpanalo.usecase.GetPopularMovies
 import com.serpanalo.usecase.ToggleMovieFavorite
 import org.koin.android.ext.koin.androidApplication
@@ -55,9 +58,14 @@ private val dataModule = module {
 
 
 private val scopesModule = module {
-    scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get()) }
+    scope(named<HomeFragment>()) {
+        viewModel { HomeViewModel(get()) }
         scoped { GetPopularMovies(get()) }
+    }
+
+    scope(named<FavoritesFragment>()) {
+        viewModel { FavoritesViewModel(get()) }
+        scoped { (GetFavoritesMovies(get())) }
     }
 
     scope(named<DetailActivity>()) {

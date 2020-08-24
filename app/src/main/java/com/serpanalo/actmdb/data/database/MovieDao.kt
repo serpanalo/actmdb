@@ -20,4 +20,7 @@ interface MovieDao{
     @Update
     fun updateMovie(movie: Movie)
 
+    @Query("SELECT * FROM Movie WHERE favorite = 1")
+    fun getFavorites(): List<Movie>
+
 }

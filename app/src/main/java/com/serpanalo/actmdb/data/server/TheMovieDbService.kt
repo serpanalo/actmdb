@@ -11,4 +11,10 @@ interface TheMovieDbService {
         @Query("region") region: String
     ): TheMovieDbResult
 
+    @GET("movie/upcoming")
+    suspend fun listUpcomingMoviesAsync(
+        @Query("api_key") apiKey: String,
+        @Query("region") region: String
+    ): TheMovieDbResult
+
 }
