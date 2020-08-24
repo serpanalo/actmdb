@@ -1,4 +1,4 @@
-package com.serpanalo.actmdb.ui.main
+package com.serpanalo.actmdb.ui.favs
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.serpanalo.data.repository.MovieRepository
 import com.serpanalo.domain.Movie
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel(),
+class FavoritesViewModel(private val movieRepository: MovieRepository) : ViewModel(),
     Scope by Scope.Impl() {
 
 
@@ -42,12 +42,10 @@ class HomeViewModel(private val movieRepository: MovieRepository) : ViewModel(),
 
 
     fun onCoarsePermissionRequested() {
-
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(movieRepository.getPopularMovies())
+            _model.value = UiModel.Content(movieRepository.getFavoriteMovies())
         }
-
     }
 
     fun onMovieClicked(movie: Movie) {

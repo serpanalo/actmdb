@@ -1,4 +1,4 @@
-package com.serpanalo.actmdb.ui.main
+package com.serpanalo.actmdb.ui.favs
 
 import android.Manifest
 import android.os.Bundle
@@ -12,20 +12,20 @@ import com.serpanalo.actmdb.R
 import com.serpanalo.actmdb.ui.common.PermissionRequester
 import com.serpanalo.actmdb.ui.detail.DetailActivity
 import com.serpanalo.actmdb.ui.navigation.MainActivity
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_favorites.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-
-class HomeFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
     private lateinit var adapter: MoviesAdapter
-    private val viewModel: HomeViewModel by lifecycleScope.viewModel(this)
+
+    private val viewModel: FavoritesViewModel by lifecycleScope.viewModel(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -38,29 +38,27 @@ class HomeFragment : Fragment() {
 
         viewModel.navigation.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
-
                 val bundle = Bundle()
                 bundle.putInt(DetailActivity.MOVIE, it.id)
-                findNavController().navigate(R.id.action_navigation_home_to_detailActivity, bundle)
+                findNavController().navigate(R.id.action_navigation_favs_to_detailActivity, bundle)
             }
         })
 
     }
 
-    private fun updateUi(model: HomeViewModel.UiModel) {
+    private fun updateUi(model: FavoritesViewModel.UiModel) {
 
         val coarsePermissionRequester = PermissionRequester(
             MainActivity.getContext(),
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
 
-
-        progress.visibility == if (model == HomeViewModel.UiModel.Loading) View.VISIBLE else View.GONE
+        progress.visibility == if (model == FavoritesViewModel.UiModel.Loading) View.VISIBLE else View.GONE
 
         when (model) {
 
-            is HomeViewModel.UiModel.Content -> adapter.movies = model.movies
-            HomeViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
+            is FavoritesViewModel.UiModel.Content -> adapter.movies = model.movies
+            FavoritesViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 viewModel.onCoarsePermissionRequested()
             }
         }
