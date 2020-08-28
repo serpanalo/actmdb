@@ -1,6 +1,7 @@
 package com.serpanalo.actmdb.data.server
 
 import android.os.Parcelable
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -16,7 +17,7 @@ data class Movie(
     val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("genre_ids") val genreIds: List<Int>,
-    val id: Int,
+    @SerializedName("id") val idm: Int,
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("original_title") val originalTitle: String,
     val overview: String,

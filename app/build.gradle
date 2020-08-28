@@ -19,6 +19,8 @@ android {
     }
 
     buildTypes {
+
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -41,14 +43,15 @@ ext {
     recyclerViewVersion = "1.1.0"
     materialVersion = "1.1.0"
     appCompatVersion = "1.1.0"
-    retrofitVersion ="2.7.2"
+    retrofitVersion = "2.7.2"
     interceptorVersion = "4.3.1"
     glideVersion = "4.11.0"
     dexterVersion = "6.0.2"
     playServicesLocationVersion = "17.0.0"
     koinVersion = "2.1.5"
-    exoplayerVersion = '2.10.0'
+    exoplayerVersion = "2.10.0"
     navVersion = "2.0.0"
+    youtubeExtractorVersion = "2.0.0"
 }
 
 dependencies {
@@ -77,11 +80,16 @@ dependencies {
 
     //Database
     implementation "androidx.room:room-runtime:$roomVersion"
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     kapt "androidx.room:room-compiler:$roomVersion"
 
     //Image
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Youtube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
     //Http
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptorVersion"
@@ -98,11 +106,6 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-androidx-scope:$koinVersion"
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
-
-    //Exoplayer
-    implementation "com.google.android.exoplayer:exoplayer-core:$exoplayerVersion"
-    implementation "com.google.android.exoplayer:exoplayer-hls:$exoplayerVersion"
-    implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayerVersion"
 
     //Test
     testImplementation 'junit:junit:4.12'

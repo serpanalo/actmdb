@@ -2,6 +2,7 @@ package com.serpanalo.domain
 
 data class Movie(
     val id: Int,
+    val idm: Int,
     val title: String,
     val overview: String,
     val releaseDate: String,

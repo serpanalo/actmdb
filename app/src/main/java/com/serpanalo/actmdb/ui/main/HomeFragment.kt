@@ -32,19 +32,17 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         adapter = MoviesAdapter(viewModel::onMovieClicked)
-
         recycler.adapter = adapter
+
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUi))
 
         viewModel.navigation.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
-
                 val bundle = Bundle()
                 bundle.putInt(DetailActivity.MOVIE, it.id)
                 findNavController().navigate(R.id.action_navigation_home_to_detailActivity, bundle)
             }
         })
-
     }
 
     private fun updateUi(model: HomeViewModel.UiModel) {
@@ -54,14 +52,20 @@ class HomeFragment : Fragment() {
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
 
-
-        progress.visibility == if (model == HomeViewModel.UiModel.Loading) View.VISIBLE else View.GONE
-
         when (model) {
 
-            is HomeViewModel.UiModel.Content -> adapter.movies = model.movies
+            is HomeViewModel.UiModel.Loading -> progress.visibility = View.VISIBLE
+
+            is HomeViewModel.UiModel.Content -> {
+                adapter.movies = model.movies
+                progress.visibility = View.GONE
+            }
+
             HomeViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 viewModel.onCoarsePermissionRequested()
+            }
+            else -> {
+
             }
         }
     }

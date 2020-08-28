@@ -19,10 +19,7 @@ import com.serpanalo.data.repository.RegionRepository
 import com.serpanalo.data.sources.LocalDataSource
 import com.serpanalo.data.sources.LocationDataSource
 import com.serpanalo.data.sources.ServerDataSource
-import com.serpanalo.usecase.FindMovieById
-import com.serpanalo.usecase.GetFavoritesMovies
-import com.serpanalo.usecase.GetPopularMovies
-import com.serpanalo.usecase.ToggleMovieFavorite
+import com.serpanalo.usecase.*
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -56,7 +53,6 @@ private val dataModule = module {
     factory { MovieRepository(get(), get(), get(), get(named("apiKey"))) }
 }
 
-
 private val scopesModule = module {
     scope(named<HomeFragment>()) {
         viewModel { HomeViewModel(get()) }
@@ -69,9 +65,11 @@ private val scopesModule = module {
     }
 
     scope(named<DetailActivity>()) {
-        viewModel { (id: Int) -> DetailViewModel(id, get(), get()) }
+        viewModel { (id: Int) -> DetailViewModel(id, get(), get(),get(),get(),get()) }
         scoped { FindMovieById(get()) }
         scoped { ToggleMovieFavorite(get()) }
+        scoped { FindMovieVideosById(get()) }
+        scoped { GetMovieVideosById(get()) }
     }
 
 }

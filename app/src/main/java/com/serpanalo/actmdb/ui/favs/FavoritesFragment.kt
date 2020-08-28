@@ -32,7 +32,6 @@ class FavoritesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         adapter = MoviesAdapter(viewModel::onMovieClicked)
-
         recycler.adapter = adapter
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUi))
 

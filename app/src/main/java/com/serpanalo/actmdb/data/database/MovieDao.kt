@@ -23,4 +23,13 @@ interface MovieDao{
     @Query("SELECT * FROM Movie WHERE favorite = 1")
     fun getFavorites(): List<Movie>
 
+
+// Videos .....
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertMovieVideos(movies: List<Video>)
+
+    @Query("SELECT * FROM Video WHERE idm LIKE :id")
+    fun findVideosOfMovieById(id: String): List<Video>
+
 }
