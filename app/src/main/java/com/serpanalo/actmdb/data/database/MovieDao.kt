@@ -8,10 +8,10 @@ interface MovieDao{
     @Query("SELECT * FROM Movie")
     fun getAll(): List<Movie>
 
-    @Query("SELECT * FROM Movie WHERE id = :id")
+    @Query("SELECT * FROM Movie WHERE idm = :id")
     fun findById(id: Int): Movie
 
-    @Query("SELECT COUNT(id) FROM Movie")
+    @Query("SELECT COUNT(idm) FROM Movie")
     fun movieCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

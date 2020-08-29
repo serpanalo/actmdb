@@ -11,7 +11,6 @@ import com.serpanalo.actmdb.data.server.Video as ServerVideo
 
 fun Movie.toRoomMovie(): DomainMovie =
     DomainMovie(
-        id,
         idm,
         title,
         overview,
@@ -26,7 +25,6 @@ fun Movie.toRoomMovie(): DomainMovie =
     )
 
 fun DomainMovie.toDomainMovie(): Movie = Movie(
-    id,
     idm,
     title,
     overview,
@@ -42,7 +40,6 @@ fun DomainMovie.toDomainMovie(): Movie = Movie(
 
 fun ServerMovie.toDomainMovie(): Movie =
     Movie(
-        0,
         idm,
         title,
         overview,

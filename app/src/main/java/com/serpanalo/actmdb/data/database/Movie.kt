@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Movie(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val idm: Int,
+    @PrimaryKey val idm: Int,
     val title: String,
     val overview: String,
     val releaseDate: String,
