@@ -3,6 +3,7 @@
 
     <!-- Menu -->
     <string name="menu_home">Top</string>
+    <string name="menu_upcoming">Próximos</string>
     <string name="menu_favs">Favs</string>
     <string name="menu_about">About</string>
 

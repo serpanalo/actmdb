@@ -53,6 +53,7 @@ private val dataModule = module {
     factory { MovieRepository(get(), get(), get(), get(named("apiKey"))) }
 }
 
+
 private val scopesModule = module {
     scope(named<HomeFragment>()) {
         viewModel { HomeViewModel(get()) }
