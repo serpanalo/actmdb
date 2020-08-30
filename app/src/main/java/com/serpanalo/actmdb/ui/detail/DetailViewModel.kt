@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.serpanalo.actmdb.ui.common.Event
 import com.serpanalo.actmdb.ui.common.Scope
-import com.serpanalo.actmdb.ui.common.ScopedViewModel
 import com.serpanalo.domain.Movie
 import com.serpanalo.domain.Video
 import com.serpanalo.usecase.FindMovieById

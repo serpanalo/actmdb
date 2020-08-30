@@ -57,7 +57,19 @@ class FavoritesFragment : Fragment() {
 
         when (model) {
 
-            is FavoritesViewModel.UiModel.Content -> adapter.movies = model.movies
+            is FavoritesViewModel.UiModel.Content -> {
+
+                if (model.movies.isEmpty()){
+                    tvEmpty.visibility=View.VISIBLE
+                    recycler.visibility=View.INVISIBLE
+                }else{
+                    adapter.movies = model.movies
+                    tvEmpty.visibility=View.INVISIBLE
+                    recycler.visibility=View.VISIBLE
+                }
+            }
+
+
             FavoritesViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 viewModel.onCoarsePermissionRequested()
             }
