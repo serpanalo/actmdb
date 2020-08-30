@@ -48,11 +48,10 @@ private val appModule = module {
     factory<PermissionChecker> { AndroidPermissionChecker(get()) }
 }
 
-private val dataModule = module {
+val dataModule = module {
     factory { RegionRepository(get(), get()) }
     factory { MovieRepository(get(), get(), get(), get(named("apiKey"))) }
 }
-
 
 private val scopesModule = module {
     scope(named<HomeFragment>()) {

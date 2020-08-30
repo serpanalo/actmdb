@@ -54,11 +54,9 @@ dependencies {
 
     testImplementation testLibs.values()
     androidTestImplementation androidTestLibs.values()
+    testImplementation androidxTestLibs.values()
 
     implementation 'com.android.support:multidex:1.0.3'
-
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
 
     //Youtube
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
