@@ -10,7 +10,6 @@ import com.serpanalo.usecase.FindMovieById
 import com.serpanalo.usecase.FindMovieVideosById
 import com.serpanalo.usecase.GetMovieVideosById
 import com.serpanalo.usecase.ToggleMovieFavorite
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -61,8 +60,8 @@ class DetailViewModelTest {
     fun `observing LiveData finds the movie`() {
 
         runBlocking {
-            val movie = mockedMovie.copy(idm = 1)
-            whenever(findMovieById.invoke(1)).thenReturn(movie)
+            val movie = mockedMovie.copy(idm = 5)
+            whenever(findMovieById.invoke(5)).thenReturn(movie)
 
             vm.model.observeForever(observer)
 
@@ -73,8 +72,8 @@ class DetailViewModelTest {
     @Test
     fun `when favorite clicked, the toggleMovieFavorite use case is invoked`() {
         runBlocking {
-            val movie = mockedMovie.copy(idm = 1)
-            whenever(findMovieById.invoke(1)).thenReturn(movie)
+            val movie = mockedMovie.copy(idm = 5)
+            whenever(findMovieById.invoke(5)).thenReturn(movie)
             whenever(toggleMovieFavorite.invoke(movie)).thenReturn(movie.copy(favorite = !movie.favorite))
             vm.model.observeForever(observer)
 

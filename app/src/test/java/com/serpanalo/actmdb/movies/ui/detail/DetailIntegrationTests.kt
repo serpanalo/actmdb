@@ -10,6 +10,8 @@ import com.serpanalo.actmdb.movies.ui.initMockedDi
 import com.serpanalo.actmdb.ui.detail.DetailViewModel
 import com.serpanalo.data.sources.LocalDataSource
 import com.serpanalo.testshared.mockedMovie
+import com.serpanalo.testshared.mockedVideo
+import com.serpanalo.testshared.mockedVideos
 import com.serpanalo.usecase.FindMovieById
 import com.serpanalo.usecase.ToggleMovieFavorite
 import kotlinx.coroutines.runBlocking
@@ -34,6 +36,9 @@ class DetailIntegrationTests : AutoCloseKoinTest() {
     @Mock
     lateinit var observer: Observer<DetailViewModel.UiModel>
 
+    @Mock
+    lateinit var observerVideo: Observer<DetailViewModel.UiModelVideo>
+
     private lateinit var vm: DetailViewModel
     private lateinit var localDataSource: FakeLocalDataSource
 
@@ -55,7 +60,6 @@ class DetailIntegrationTests : AutoCloseKoinTest() {
     @Test
     fun `observing LiveData finds the movie`() {
         vm.model.observeForever(observer)
-
         verify(observer).onChanged(DetailViewModel.UiModel(mockedMovie.copy(5)))
     }
 
@@ -69,4 +73,14 @@ class DetailIntegrationTests : AutoCloseKoinTest() {
             assertTrue(localDataSource.findById(5).favorite)
         }
     }
+
+    @Test
+    fun `observing LiveData finds videos of the movie`() {
+        vm.modelVideo.observeForever(observerVideo)
+        verify(observerVideo).onChanged(DetailViewModel.UiModelVideo(listOf(mockedVideo.copy("5"))))
+
+    }
+
+
+
 }
