@@ -3,10 +3,8 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation project(":domain")
+
     implementation kotlinLibs.values()
     testImplementation testLibs.values()
     testImplementation androidxTestLibs.values()
 }
-
-sourceCompatibility = "8"
-targetCompatibility = "8"

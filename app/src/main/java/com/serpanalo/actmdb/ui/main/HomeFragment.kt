@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         viewModel.navigation.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
                 val bundle = Bundle()
-                bundle.putInt(DetailActivity.MOVIE, it.id)
+                bundle.putInt(DetailActivity.MOVIE, it.idm)
                 findNavController().navigate(R.id.action_navigation_home_to_detailActivity, bundle)
             }
         })
