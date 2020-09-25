@@ -6,10 +6,10 @@ import com.serpanalo.data.sources.ServerDataSource
 import com.serpanalo.domain.Movie
 import com.serpanalo.domain.Video
 
-class TheMovieDbDataSource : ServerDataSource {
+class TheMovieDbDataSource (private val theMovieDb: TheMovieDb) : ServerDataSource {
 
     override suspend fun getPopularMovies(apiKey: String, region: String): List<Movie> =
-        TheMovieDb.service
+        theMovieDb.service
             .listPopularMoviesAsync(apiKey, region)
             .results
             .map { it.toDomainMovie() }
@@ -19,7 +19,7 @@ class TheMovieDbDataSource : ServerDataSource {
         region: String,
         movieId: String
     ): List<Video> =
-        TheMovieDb.service
+        theMovieDb.service
             .listMovieVideos(movieId, apiKey, region)
             .results
             .map { it.toDomainVideo() }

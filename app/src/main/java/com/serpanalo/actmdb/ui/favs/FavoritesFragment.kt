@@ -33,7 +33,7 @@ class FavoritesFragment : Fragment() {
 
         adapter = MoviesAdapter(viewModel::onMovieClicked)
 
-        recycler.adapter = adapter
+        recycler_favs.adapter = adapter
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUi))
 
         viewModel.navigation.observe(viewLifecycleOwner, Observer { event ->
@@ -61,11 +61,11 @@ class FavoritesFragment : Fragment() {
 
                 if (model.movies.isEmpty()){
                     tvEmpty.visibility=View.VISIBLE
-                    recycler.visibility=View.INVISIBLE
+                    recycler_favs.visibility=View.INVISIBLE
                 }else{
                     adapter.movies = model.movies
                     tvEmpty.visibility=View.INVISIBLE
-                    recycler.visibility=View.VISIBLE
+                    recycler_favs.visibility=View.VISIBLE
                 }
             }
 
